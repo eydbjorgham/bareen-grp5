@@ -15,20 +15,54 @@
   h1 {
     color: white;
     position: absolute;
-    top: 0rem;
-    left: 0rem;
+    bottom: 2rem;
+    right: 2rem;
+    font-style: italic;
   }
 
   .hero_logo {
     position: absolute;
-    top: 0rem;
-    left: 0rem;
+    top: 5rem;
+    left: 1rem;
+    height: auto;
+    width: 50%;
   }
   .hero-content {
     position: relative;
+    width: 100vw;
+    overflow: hidden;
   }
   .hero-content video {
+    height: 500px;
+    object-fit: contain;
+    object-position: -200px;
+  }
+
+  @media (min-width: 600px){
+  h1 {
+    bottom: 4rem;
+    left: 4rem;
+    font-size: 4em;
+  }
+
+  .hero_logo {
+    top: 7rem;
+    left: auto;
+    right: 5rem;
+    height: auto;
+    width: 25%;
+  }
+
+  .hero-content {
+    width: 100%;
+    overflow: hidden;
+  }
+
+    .hero-content video {
     width: 100%;
     height: auto;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
   }
 </style>
