@@ -7,12 +7,75 @@ import Collab from "../components/Collab.astro";
 import Produkter from "../components/Produkter.astro";
 import Logo from "../components/Logo.astro";
 import Footer from "../components/Footer.astro";
+
+// API DETAILS
+const url = "https://sgabuhgbttvclgzuovnv.supabase.co/rest/v1"
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnYWJ1aGdidHR2Y2xnenVvdm52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyNzI5NzksImV4cCI6MjA1OTg0ODk3OX0.gdGU8ZtLW9DMttcyXyyzEuOC5Tic44cXwjBpwZ-lFDI";
+const options = {
+  headers: {
+    apikey: key,
+  },
+};
+
+// GET TEES
+const request_tee = await fetch(url + "/bareen-tee", options);
+const data_tee = await request_tee.json();
+
+// GET COFFEE
+const request_kaffe = await fetch(url + "/bareen-coffee", options);
+const data_kaffe = await request_kaffe.json();
+
+// MERGE DATA INTO SINGLE ARRAY
+const data = [...data_tee, ...data_kaffe]
+
+console.log("console log data: ", data_kaffe);
 ---
 
-<Layout />
-<Nav />
-<Header />
-<Collab />
-<Produkter />
-<Logo />
-<Footer />
+<Layout>
+    <section>
+    <h2>social brew</h2>
+    <h3>collection</h3>
+    <div class="products">
+      {data.map((product: any) => {
+          return <Produkter data={product} />;
+        })
+      }
+    </div>
+  </section>
+  <!-- cl -->
+</Layout>
+
+<style>
+  section {
+    padding: 2rem;
+  }
+
+  section h2{
+    font-family: Helvetica, sans-serif;
+    font-size: 6em;
+    color: #D9311E;
+    font-style: italic;
+    
+  }
+
+  section h3{
+    font-family: Helvetica, sans-serif;
+    font-size: 6em;
+    color: #D9311E;
+    font-style: italic;
+    margin-left: 8rem;
+  }
+
+  .products {
+    /* display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-around;
+    padding-top: 2rem; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    justify-items: center;
+    margin-left: 10em;
+  }
+</style>

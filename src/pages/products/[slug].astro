@@ -1,0 +1,92 @@
+---
+
+
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+
+  // API DETAILS
+const url = "https://sgabuhgbttvclgzuovnv.supabase.co/rest/v1"
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNnYWJ1aGdidHR2Y2xnenVvdm52Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyNzI5NzksImV4cCI6MjA1OTg0ODk3OX0.gdGU8ZtLW9DMttcyXyyzEuOC5Tic44cXwjBpwZ-lFDI";
+const options = {
+  headers: {
+    apikey: key,
+  },
+};
+
+// GET TEES
+const request_tee = await fetch(url + "/bareen-tee", options);
+const data_tee = await request_tee.json();
+
+// GET COFFEE
+// const request_kaffe = await fetch(url + "/bareen-coffee", options);
+// const data_kaffe = await request_kaffe.json();
+
+  return data_tee.map((item: any) => {
+    return {
+      params: { slug: item.slug },
+      props: { item },
+    };
+  });
+}
+
+const { item } = Astro.props;
+---
+
+<Layout title=`product`>
+  <h1>{item.name}</h1>
+  <!-- <header>
+    <h1>{item.product}</h1>
+    <p>{item.price} kr</p>
+    <div class="images">
+      {
+        item.more_images.map((image) => {
+          return <img src=`${image}` alt="Product image"/>
+        })
+      }
+    </div>
+
+    <h2>Colors</h2>
+    <div class="colors">
+      {
+        item.colors.map((color) => {
+          return <ProductColor color={color} />;
+        })
+      }
+    </div>
+    <h2>Description</h2>
+    <p>{item.description}</p>
+  </header> -->
+</Layout>
+
+<style>
+  header {
+    padding: 2rem;
+  }
+  h1,
+  h2 {
+    font-size: 1rem;
+  }
+  h2 {
+    text-transform: uppercase;
+  }
+  p {
+    max-width: 75ch;
+  }
+  img {
+    max-width: 100%;
+  }
+  .images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .colors {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+</style>
