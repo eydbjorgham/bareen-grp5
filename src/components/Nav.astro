@@ -1,3 +1,278 @@
 ---
 
 ---
+
+<article>
+  <div class="fragt">
+    <p class="p_header">Fri fragt over 499 kr - 4,6 på Trustpilot</p>
+  </div>
+
+  <nav>
+    <ul class="menu">
+      <li><a href="#">HERRE</a></li>
+      <li><a href="#">DAME</a></li>
+      <li><a href="#">SPORT</a></li>
+      <li><a href="#">COMMUNITY</a></li>
+      <li><a href="#">COLLABS</a></li>
+      <hr class="menu_mobil" />
+      <li class="menu_mobil"><a href="#">CLUB</a></li>
+      <li class="menu_mobil"><a href="#">LOG IND</a></li>
+      <hr class="menu_mobil" />
+    </ul>
+
+    <div class="burger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
+    <div class="logo">
+      <a href="index.html"><img src="imgs/bareen.svg" alt="Logo" /></a>
+    </div>
+
+    <div class="nav_hojre">
+      <a href="#" class="forsvind2">CLUB</a>
+      <a href="#" class="forsvind2">LOG IND</a>
+      <a href="#"><img src="imgs/sprog.webp" alt="Sprog" class="forsvind" /></a>
+      <a href="#"><img src="imgs/sog.webp" alt="Søg" class="ikon" /></a>
+      <a href="#"><img src="imgs/like.webp" alt="Like" class="forsvind" /></a>
+      <a href="#"><img src="imgs/kurv.webp" alt="Kurv" class="ikon" /></a>
+    </div>
+  </nav>
+</article>
+
+<style>
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  body {
+    font-family: sans-serif;
+    overflow-x: hidden;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 12px;
+  }
+
+  .p_header {
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    color: white;
+    text-align: center;
+  }
+
+  .fragt {
+    background-color: rgb(76, 76, 76);
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  /* Nav layout */
+  nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    font-family: sans-serif;
+  }
+
+  .menu_mobil {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    margin-left: -50px;
+    align-items: center;
+    gap: 20px;
+    margin-left: 0.5em;
+  }
+
+  .menu li {
+    position: relative;
+  }
+
+  .menu a {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav_hojre {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo img {
+    height: 30px;
+    width: auto;
+  }
+
+  .ikon,
+  .forsvind {
+    width: 20px;
+    height: auto;
+  }
+
+  /* BURGER STYLING */
+  .burger {
+    display: none;
+    width: 30px;
+    cursor: pointer;
+  }
+
+  .burger .line {
+    height: 2px;
+    background-color: #333;
+    margin-bottom: 5px;
+    transition: 0.3s ease;
+  }
+
+  .burger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .burger.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* --------- MOBIL STYLING --------- */
+
+  @media (max-width: 1023px) {
+    /* Skjul desktop elementer */
+    .forsvind,
+    .forsvind2 {
+      display: none;
+    }
+
+    li {
+      margin-left: 10px;
+    }
+
+    /* Skjul menu som default på mobil */
+    .menu {
+      display: none;
+      position: absolute;
+      flex-direction: column;
+      gap: 20px;
+
+      background-color: white;
+    }
+
+    nav.active .menu {
+      position: absolute;
+      top: 60px; /* afhængig af din header-højde */
+      left: 0;
+      right: 0;
+      display: block;
+      z-index: 100;
+      background-color: white; /* eller din ønskede farve */
+      padding-top: 25px;
+      margin-top: -20px;
+    }
+
+    /* Vis burger */
+    .burger {
+      display: block;
+    }
+
+    /* Aktiv menu (når burger er åben) */
+    nav.active .menu {
+      display: flex;
+    }
+
+    nav.active .menu li {
+      text-align: left;
+      padding: 2px;
+    }
+
+    nav.active .menu a {
+      font-size: 16px;
+    }
+
+    .menu {
+      z-index: 0;
+      margin-left: 0;
+      align-items: flex-start;
+    }
+
+    .nav_hojre {
+      z-index: 200;
+    }
+
+    .fragt {
+      margin-bottom: 2%;
+    }
+
+    .menu_mobil {
+      display: flex;
+    }
+
+    hr {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid lightgray;
+      margin: 10px 0;
+    }
+
+    nav.active .menu a {
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  }
+</style>
+
+<script is:inline>
+  const burger = document.querySelector(".burger");
+  const nav = document.querySelector("nav");
+  const menu = document.querySelector(".menu");
+
+  // Toggle burger menu
+  burger.addEventListener("click", () => {
+    burger.classList.toggle("active");
+    nav.classList.toggle("active");
+    document.body.classList.toggle("lock-scroll");
+  });
+
+  // Luk menu når man klikker på et menupunkt
+  menu.addEventListener("click", () => {
+    burger.classList.remove("active");
+    nav.classList.remove("active");
+    document.body.classList.remove("lock-scroll");
+  });
+
+  const headings = document.querySelectorAll(".footer_h1");
+
+  headings.forEach((heading) => {
+    heading.addEventListener("click", () => {
+      const parentUl = heading.parentElement;
+      parentUl.classList.toggle("active");
+    });
+  });
+</script>
