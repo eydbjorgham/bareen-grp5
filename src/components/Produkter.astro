@@ -1,12 +1,16 @@
 ---
 const { data } = Astro.props;
+
+console.log("Produkter :", data);
 ---
 
 <article>
-  <img src={data.image} alt=`Image of ${data.product}` />
+  <img src={data.image} alt={`Image of ${data.product}`} />
   <h3>{data.name}</h3>
   <p>{data.pris} kr</p>
-  <p><a href=`/products/${data.slug}`>Learn more</a></p>
+  <p>
+    <a href={`/products/${data.slug}`}>Learn more</a>
+  </p>
 </article>
 
 <style>
