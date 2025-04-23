@@ -6,16 +6,24 @@ console.log("Produkter :", data);
 
 <article>
   <img src={data.image} alt={`Image of ${data.product}`} />
+  <div class="details"> 
   <h3>{data.name}</h3>
   <p>{data.pris} kr</p>
-  <p>
+  </div>
+  <!-- <p>
     <a href={`/products/${data.slug}`}>Learn more</a>
-  </p>
+  </p> -->
 </article>
 
 <style>
   article {
     width: 500px;
     padding-bottom: 1rem;
+  }
+
+  article .details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
   }
 </style>
